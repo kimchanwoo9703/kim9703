@@ -1,0 +1,19 @@
+https://warp-sedum-d34.notion.site/RDBMS-1f1a69c6e82680b385b1e6b9cab89c36
+
+
+테이블 table 표
+
+한 줄: 행 로우 row record 튜플 Tuple
+한 칸:열 컬럼 column 필드 field 속성 변수
+
+기본키 주요키 중요키 primary ket 약어:pk
+외래키 foreign key 약어:fk
+-- SQL : Structured Query Language
+-- 한줄 주석
+/*범위 주석 */
+scott4_10
+tiger
+select * from emp;
+select * from dept;
+select * from salgrade
+* : 모든것 (와일드카드)
