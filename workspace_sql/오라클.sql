@@ -1048,10 +1048,12 @@ select e.job,e.empno,e.ename,sal,d.deptno,d.dname
 from emp e
 join dept d on e.deptno = d.deptno
 where e.job = (
-select job
-from emp
-where ename = 'ALLEN')
-order by e.sal desc;
+               select job from emp
+               where ename = 'ALLEN')
+               order by sal desc;
+----------------------Q1풀이-----------------------------
+
+
 
 --Q2 전체사원의 평균급여보다 많이받는 사원의 사원정보 부서정보 급여 등급 정보를
 --출력하는 sql 구문을 작성하세요 (단 출력할때 급여가 많은 순으로 정렬하되 같다면 사원번호 기준으로 오름차순으로 정렬하세요
@@ -1066,10 +1068,25 @@ from emp
 )
 order by sal desc, empno asc;
 
+--------------------Q2 풀이----------------------
+--1. 전체사원의 평균급여 계산 select avg(sal) from emp;
+--2. 평균보다 초과하는 사람을 출력
+--3. 정렬은 급여 내림차순 사원번호 오름차순
+select empno, ename, 
+(salect dname from dept d where e.deptno = d.deptno),
+hiredate,
+(salect dname from dept d where e.deptno = d.deptno) loc,
+sla,
+(select grade from salgrade s where e.sal >= s,losal and e.sal <=s.hisal
+
+from emp e
+where sal > (select avg (sal) from emp)
+order by sal desc, empno desc;
+
 --Q3 10번 부서에 근무하는 사원중 30번 부서에 없는 직책인 사원의 사원정보 부서정볼르 다음과같이
 -- 출력하는 sql 구문을 작성하세요.
 
-select e.empno,e.ename,e.job,d.deptno,d.dname,loc
+select empno,ename,job,d.deptno,dname,loc
 from emp e
 join dept d on e.deptno = d.deptno
 where e.deptno = 10
@@ -1093,18 +1110,7 @@ from emp
 where job = 'SALESMAN'
 )
 order by empno asc;
-
-
-
-
-
-
-
-
-
-
-
-
+------------------------------------------------------------
 select empno,ename,sal,grade
 from emp e
 join salgrade s on e.sal between s.losal and s.hisal
@@ -1115,6 +1121,212 @@ where job = 'SALESMAN'
 )
 order by e.empno asc;
 
+--퀴즈-------------------------------
+
+--Q1 커미션이 null인 사원을 급여 오름차순으로 정렬하시오
+
+select * 
+from emp
+where comm is null
+order by sal asc;
+
+select *
+from emp
+where comm is null
+order by sal asc;
+-----------------------------Q1 풀이------------------------------
+select * from emp
+where comm is null
+order by sal asc;
+
+-------------------------------Q2풀이---------------------------------
+select grade, count (empno)
+from salgrade 
+left join emp 
+on sal between losal and hisal
+group by grade
+order by grade asc;
+
+select grade, count(*)
+from salgrade
+left join emp
+on sal between losal and hisal
+group by grade
+order by grade asc;
+
+----------------------Q3-----------------------------
+
+select ename, sal,grade,dname
+from emp e
+join salgrade s on sal 
+between s.losal and s.hisal
+join dept d on e.deptno = d.deptno
+where grade >=3
+order by grade desc, sal desc;
+
+-------------------Q3 풀이-------------------------
+
+select * from emp e, salgrade s
+where e.sal between s.losal and s.hisal
+and s.grade >= 3
+order by s.grade desc, e.sal desc;
+
+--------------------Q4------------------------
+
+select * 
+from emp e
+    left outer join dept d using (deptno)
+    left outer join salgrade s on (e.sal >= losal and e.sal <= s.hisal)
+--where s.grade = 2 or s.grade = 3
+where s.grade in (2, 3)
+    and d.dname = 'SALES'
+order by e.sal desc;
+
+--
+-- 생성 create       
+-- 조회 read    (select)              CRUD
+-- 수정 update
+-- 삭제 delete
+
+-- DML(Data manipulation language)
+
+-- DDL(Data Definition Language)
+
+--오라클 자료타입
+-- char (길이) 글씨를 넣을수있음 | 최대길이: 2000byte |고정길이
+-- varchar2 (길이) 최대길이 400byte -길이변경가능- 
+-- number(전체길이, 소숫점길이) "숫자"만 넣을수있음 최대길이 38
+-- number(7,2): 전체 7자리, 소수점 이하 2자리까지 기록
+-- date "날짜형식" 만 저장가능 
+
+create table EMP_DDL(
+empno    number(4),
+ename    varchar2(10,
+job      varchar2(9),
+mgr      number(4),
+hiredate date,
+sal      number(7,2),
+comm     number(7,2),
+deptno   number(2)
+);
+desc emp_ddl;
+select * from emp_ddl;
+
+create table dept_ddl
+         as select * from dept;
+desc dept_ddl;
+select * from dept_ddl;
+-----------------------------------------------------------------
+create table  emp_ddl_30
+as select * from emp where deptno=30;
+
+select * from emp_ddl_30;
+---------------------------------------------------------------
+create table empdept_ddl
+     as select e.empno, e.ename,e.job, e.mgr, e.hiredate,
+               e.sal, e.comm, d. deptno, d.dname, d.loc
+            from emp e, dept d
+               where 1 <> 1;
+
+select * from empdept_ddl;
+
+create table emp_alter
+as select * from emp;
+select * from emp_alter;
+
+alter table emp_alter
+add  varchar(20);    --varchar 로 적으면 자동으로 varchar2로 인식됌
+
+desc emp_alter;
+select * from emp_alter;
+
+alter table emp_alter
+add age2 number(3) default 1;   
+
+alter table emp_alter
+    rename column hp to tel;           --컬럼 변경
+    
+select *from emp_alter;
+
+
+alter table emp_alter
+modify empno number(5);         --수정할때 타입의 크기가 커지는것만가능       
+
+desc emp_alter;
+       
+alter table emp_alter
+drop column age;               --컬럼을 지울때 drop
+
+select * from emp_alter;
+
+truncate table emp_rename; ------------컬럼을 지울때
+----- 돼새김문제 Q1-----------
+create table emp_hw(
+empno    number(4),
+ename    varchar2(10),
+job      varchar2(9),
+mgr      number(4),
+hiredate date,
+sal      number(7,2),
+comm     number(7,2),
+deptno   number(2)
+);
+desc emp_hw;
+select * from emp_hw;
+
+
+-- rename 테이블명 바꾸기
+-- truncate 테이블 내용 비우기 되돌릴수없음
+-- drop 테이블을 삭제ㅔㅔㅔㅔㅔㅔㅔㅔ
+--------------Q2----------------------------
+alter table emp_hw
+add bigo varchar(20);
+------------Q3-----------------------
+alter table emp_hw
+modify bigo varchar(30);                
+------------Q4---------------------
+alter table emp_hw
+    rename column bigo to remark;
+
+-----------------------------------------------------------------
+create table dept_temp
+as select * from dept;
+select * from dept_temp;
+
+
+insert into dept_temp (deptno, dname, loc)
+              values  (50, 'database', 'seoul');
+              
+select * from dept_temp;
+
+
+insert into dept_temp (deptno, dname, loc)
+              values  (50, 'database', 'seoul');
+
+insert into dept_temp (deptno, dname, loc)
+              values  (60, 'network', 'busan');      
+                      
+insert into dept_temp (deptno, dname, loc)
+              values  (70, 'web', null);
+                 
+insert into dept_temp (deptno, dname  , loc)                 
+              values(80 ,  'mobile','    ');
+ 
+insert into dept_temp (deptno, loc)
+              values (90, 'incheon');
+              
+              
+select * from dept_temp;
+
+----- values 여러개추가------ 
+insert all 
+       into  dept_temp (deptno, dname, loc)
+              values  (70, 'database', 'seoul')
+       into  dept_temp   
+              values  (80, 'network', 'busan')
+       into  dept_temp   
+              values  (90, 'network', 'busan')
+      select * from dual;        
 
 
 
@@ -1125,45 +1337,176 @@ order by e.empno asc;
 
 
 
+create table emp_temp
+as select * from emp where 1 <> 1;
+
+select * from emp_temp;
+
+insert into emp_temp (empno, ename, hiredate)
+values (2111, '이순신', to_date('2025-05-21', 'yyyy-mm-dd') );
+
+insert into emp_temp (empno, ename, hiredate)
+values (3111, '심청이', sysdate);
+
+insert into emp_temp
+select * from emp where deptno=10;         --values 대신 select
 
 
 
+create table dept_temp2
+as select * from dept;
+select * from dept_temp2;
 
 
+update dept_temp2
+ set loc = 'seoul';
+ 
+ --update, delete의  where 를 무조건 select 에서 검증하고 사용
+update dept_temp2
+  set dname = 'database',
+      loc   = 'seoul2'
+where deptno=40;
+
+select * from dept_temp2
+where deptno=40;
+
+create table emp_tmp
+as select * from emp;
+
+select * from emp_tmp;
+
+select sal, sal * 1.03 from emp_tmp
+where sal <1000;
+
+update emp_tmp
+set sal = sal * 1.03           -- =기준으로 오른쪽먼저 계산 = 연산자 우선순위가 낮음
+where sal <1000;
+
+create table emp_temp2
+as select * from emp;
+select * from emp_temp2;
+
+commit;
+
+delete emp_temp2;           --rollback 으로 복구가능
+
+rollback;
+
+select * from dict;
+
+select * from user_tables;
+
+select * from user_indexes;
+
+create index idx_emp_sal
+    on emp(sal);
+
+select * from user_ind_columns;
+-----------------------------------------------------------------------
+
+select  /* + index(e idx_emp_sal) */ --강제 hint
+   * 
+from emp e
+where sal > 2000;
+
+create view vw_emp20
+  as  (select empno,ename,job,deptno         --privileges 에러에 뜨면 권한없다는뜻
+       from emp
+       where deptno = 20);
+---------------조회할떄--------------------------
+
+select * from vw_emp20;
+
+--삭제할때 drop view---
+drop view vw_emp20;
 
 
+create sequence seq_dept
+start with 10;
+
+select seq_dept.nextval
+from dual;
+
+select seq_dept.currval
+from dual;
+
+insert into dept_temp (deptno, dname, loc)
+values (seq_dept.nextval, '테스트', '천안');
+
+select * from dept_temp;
+-----------------primary key------------------
+----------primary key 만들면 indexes  까지 자동으로 생성됌 constraint pk_ 실무에서 잘안쓰임
+create table table_pk(
+         login_id varchar2(20)   primary key,
+         login_pwd varchar2(20) not null,
+         tel      varchar2(20) 
+);
+
+insert into table_pk
+values('id', 'pw', null);
+-------- 이미 존재하는거 추가
+insert into table_pk
+values('id2', 'pw2', null);
+
+select * from table_pk;
+
+select * from user_indexes;
+
+desc table_pk;
+------ 이미 존재하는것으로 변경
+update table_pk
+set login_id = null
+where login_id = 'id';
+
+create table dept_fk(
+deptno number(2) constraint deptfk_deptno_pk primary key,
+dname varchar2(14),
+loc   varchar2(13)
+);
+
+desc dept_fk;
+
+create table emp_fk(
+empno number(4) constraint empfk_deptno_pk primary key,
+ename varchar2(10),
+job   varchar2(9),
+mgr   number(4),
+hiredate date,
+sal   number(7,2),
+comm  number(7,2),
+deptno number(2) constraint empfk_deptno_pk references dept_fk (deptno)
+);
 
 
+foreign key (deptno)
+references dept_fk (deptbo)
+desc emp_fk2;
+
+select * from dept_fk;
+
+-------아직 dept_fk에 없어서 실패
+insert into emp_fk
+values ( 1000,'이름', 10);
+
+insert into dept_fk
+values (10,'부서','위치');
+
+select * from dept_fk;
+
+update emp_fk
+set deptno =20
+where deptno=10;
+
+update dept_fk
+set deptno =20
+where deptno=10;
+
+delete dept_fk
+where deptno=10;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+delete dept_fk
+where deptno=20;
 
 
 
