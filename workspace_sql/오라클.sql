@@ -1508,12 +1508,25 @@ where deptno=10;
 delete dept_fk
 where deptno=20;
 
+select
+empno,
+rpad(substr(ename,1,2), length(ename),'*') as ename
+from emp
+order by
+empno desc;
 
 
+select
+substr(to_char(empno),1,2) || rpad('*' , length(to_char(empno)) -2, '*') as empno,ename
+from emp
+order by
+empno desc;
 
 
-
-
-
-
+select e.ename,e.empno,d.deptno,d.dname,d.loc
+from emp e
+join 
+dept d on e.deptno= d.deptno
+order by
+d. dname desc;
 
