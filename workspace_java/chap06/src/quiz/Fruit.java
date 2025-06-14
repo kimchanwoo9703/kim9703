@@ -9,8 +9,8 @@ public class Fruit {
 
     	Fruit(String storeName) {
         this.storeName = storeName;
-        name = new String[] {"샤인머스켓", "수박", "두리안"};
-        money = new int[] {10000, 12000, 15000};
+        name = new String[] {"샤인머스켓", "수박", "두리안", "망고"};
+        money = new int[] {10000, 12000, 15000, 8500000};
     }
 
    	    void printAllFruits() {
@@ -25,10 +25,10 @@ public class Fruit {
 
    
 
-    	boolean delivery(String addr, String name, int count) {
-        boolean success = new Random().nextInt(100) < 70;
+    	boolean delivery(String a, String name, int count) {
+        boolean success = new Random().nextInt(100) < 15;
         if (success)
-            System.out.println(addr + "에 " + name + " " + count + "개 배송 완료");
+            System.out.println(a + "에 " + name + " " + count + "주문 완료");
         else
             System.out.println("주문 실패");
         return success;
