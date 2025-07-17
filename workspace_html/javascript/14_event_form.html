@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    #parent{
+        background-color: brown;
+        padding: 10px;
+    }
+    #child1{
+        background-color: hotpink;
+    }
+    #child2{
+        background-color: red;
+    }
+</style>
+
+
+
+<script src="./asset/asset/js/14_event_form.js"></script>
+</head>
+<body>
+    <form method="get" action="https://search.naver.com/search.naver">
+        <input type="text" id="keyword" name="query" placeholder="검색어를 입력해주세요">
+        <select name="" id="site">
+            <option value="1">네이버</option>
+            <option value="2">구글</option>
+        </select>
+        <button type="submit">검색</button>
+    </form>
+    <div>
+        피자토핑
+        <hr>
+        <input type="checkbox" class="chk_all">전체선택 <br>
+        <input type="checkbox" class="check" value="페퍼로니">페퍼로니
+        <input type="checkbox" class="check" value="베이컨">베이컨
+        <input type="checkbox" class="check" value="치즈">치즈
+        <input type="checkbox" class="check" value="파인애플">파인애플
+        <input type="checkbox" class="check" value="버섯">버섯
+        <input type="checkbox" class="check" value="옥수수">옥수수
+        <br>
+        <input type="button" value="선택" onclick="showToppings()">
+    </div>
+    <div>
+        토핑: <span id="Topping"></span>
+    </div>
+
+<!-- <script>
+    document.querySelector("[type=button]").addEventListener("click", function() {
+        // 선택한 토핑의 값을 따로 출력
+        let selectedToppings = document.querySelector("#selectedToppings");
+        selectedToppings.innerText = ""; // 이전 출력값 초기화
+
+        let list_chk = document.querySelectorAll(".chk");
+        for (let i = 0; i < list_chk.length; i++) {
+            if (list_chk[i].checked == true) {
+                console.log(list_chk[i].value);
+                selectedToppings.innerText += list_chk[i].value + ", ";
+            }
+        }
+    });
+
+    document.querySelector(".chk_all").addEventListener("click", function() {
+        let isChecked = this.checked;
+        let list_chk = document.querySelectorAll(".chk");
+        for (let i = 0; i < list_chk.length; i++) {
+            list_chk[i].checked = isChecked;
+        }
+    });
+</script> -->
+
+<div id="parent">
+    부모
+    <div id="child1">자식1</div>
+    <div id="child2">자식2</div>
+</div>
+                
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KartRide</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #333;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #2c2a39;
+        }
+        .main-header {
+            background-color: #1c1c27;
+            padding: 0 20px;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #444;
+        }
+        .nexon-logo {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .user-menu a {
+            margin-left: 15px;
+            font-size: 14px;
+        }
+        .start-game-btn {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        .main-nav {
+            display: flex;
+            padding: 10px 0;
+        }
+        .nav-left {
+            display: flex;
+        }
+        .nav-left a {
+            margin-right: 25px;
+            font-size: 16px;
+        }
+        .kart-logo {
+            font-size: 24px;
+        }
+        .bottom-content {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        .news-box {
+            flex: 1;
+            background-color: #252531;
+            padding: 20px;
+        }
+        .box-header {
+            display: flex;
+            border-bottom: 1px solid #444;
+        }
+        .box-header h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .tabs {
+            margin-left: 20px;
+        }
+        .tabs span {
+            margin-right: 15px;
+            color: #888;
+        }
+        .tabs span.active {
+            color: #fff;
+        }
+        .plus-icon {
+            margin-left: auto;
+            font-size: 24px;
+        }
+        .news-list {
+            list-style: none;
+            padding: 0;
+        }
+        .news-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        .news-list li a {
+            color: #ccc;
+        }
+        .news-list li a:hover {
+            color: #fff;
+        }
+        .tag {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .tag.notice { color: #3498db; }
+        .tag.update { color: #9b59b6; }
+        .tag.event { color: #e67e22; }
+        .info-boxes {
+            display: flex;
+            gap: 20px;
+        }
+        .info-card {
+            width: 250px;
+            background-color: #252531;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+        .card-image-placeholder {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+        }
+        .notice-card .card-image-placeholder {
+            background-color: #0d4642;
+        }
+        .dev-note-card .card-image-placeholder {
+            background-color: #1a4b2f;
+        }
+        .info-card p {
+            font-size: 14px;
+            color: #ccc;
+            margin: 10px 0;
+        }
+        .card-nav {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="top-bar">
+                <span class="nexon-logo">Human</span>
+                <div class="user-menu">
+                    <a href="#">로그인</a>
+                    <a href="#" class="start-game-btn">게임 시작</a>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <div class="nav-left">
+                    <a href="#" class="kart-logo">Human</a>
+                    <a href="#">새소식</a>
+                    <a href="#">자료실</a>
+                    <a href="#">랭킹</a>
+                    <a href="#">커뮤니티</a>
+                    <a href="#">길드</a>
+                    <a href="#">이벤트</a>
+                    <a href="#">다운로드</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="bottom-content">
+                <div class="news-box">
+                    <div class="box-header">
+                        <h3>새 소식</h3>
+                        <div class="tabs">
+                            <span class="active">전체</span>
+                            <span>공지사항</span>
+                            <span>업데이트</span>
+                        </div>
+                        <span class="plus-icon">+</span>
+                    </div>
+                    <ul class="news-list">
+                        <li><a href="#"><span class="tag notice">공지</span> 6/14(금) 넥슨 정기점검 안내</a></li>
+                        <li><a href="#"><span class="tag update">업데이트</span> 6/20(목) 카트라이더 업데이트 안내</a></li>
+                        <li><a href="#"><span class="tag event">이벤트</span> 6/20(목) ~ 6/25(화) PC방 이벤트 안내</a></li>
+                        <li><a href="#"><span class="tag notice">공지</span> 6/18(화) 임시점검 안내</a></li>
+                        <li><a href="#"><span class="tag notice">공지</span> 6/15(토) PC방 주말 이벤트 안내</a></li>
+                        <li><a href="#"><span class="tag notice">공지</span> 6/13(목) PC방 쿠폰 이벤트 안내</a></li>
+                    </ul>
+                </div>
+
+                <div class="info-boxes">
+                    <div class="info-card notice-card">
+                        <div class="card-image-placeholder">
+                            <h4>공지사항</h4>
+                        </div>
+                        <p>서비스 종료 및 환불 일정 안내</p>
+                    </div>
+                    <div class="info-card dev-note-card">
+                         <div class="card-image-placeholder">
+                            <h4>개발자노트</h4>
+                        </div>
+                        <p>그 동안의 사랑에 진심으로 감사드립니다.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

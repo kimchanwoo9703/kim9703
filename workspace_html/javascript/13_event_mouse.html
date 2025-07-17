@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="./asset/asset/js/13_event_mouse.js"></script>
+        <style>
+            .mouse{
+                border: 1px solid red;
+                /* display: inline-block; */
+                height: 100px;
+                width: 100px;
+                margin: 50px 50px;
+            }
+            .wrap{
+                display: flex;
+            }
+            #cursor{
+                position: absolute;
+            }
+         
+        </style>
+</head>
+<body>
+    <div class="wrap">
+        <div>
+            <div id="mouse" class="mouse"></div>
+            <div id="drag" class="mouse">drag me</div>
+        </div>
+        <div id="view"></div>
+    </div>
+
+<img id="cursor" style="width: 100px; height: 100px;" src="https://worldlab.signpen.net/media/upload_images/2024/10/IMG_1068.gif">
+
+</body>
+</html>

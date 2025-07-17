@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배송지 등록</title>
+<style>
+    #main-container {
+        display: flex;
+        gap: 20px;
+        }
+        .column {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid hotpink;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                }
+            </style>
+        </head>
+        <body>
+            
+            <div id="main-container">
+    <div class="column">
+        <h2>사용자 정보</h2>
+        <form id="Coupang">
+            <input type="text" id="name" placeholder="이름">
+            <input type="text" id="add" placeholder="주소">
+            <input type="text" id="pon" placeholder="연락처">
+            <button type="submit">등록</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <div class="column">
+        <h2>배송지 정보</h2>
+        <form id="Delivery">
+            <input type="text" id="d_name" placeholder="배송지 이름" >
+            <input type="text" id="d_add" placeholder="배송지 주소" >
+            <input type="text" id="d_pon" placeholder="배송지 연락처" >
+            <button type="submit">배송지 등록</button>
+        </form>
+        <div id="deliveryResult"></div>
+    </div>
+</div>
+<script>
+    document.getElementById('Coupang').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const address = document.getElementById('add').value;
+        const contact = document.getElementById('pon').value;
+        const userContainer = document.createElement('div');
+        userContainer.innerHTML = `
+        <hr>
+        이름: ${name} <br>
+        주소: ${address} <br>
+        연락처: ${contact}
+        `;
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('result').appendChild(userContainer);
+        document.getElementById('d_name').value = name;
+        document.getElementById('d_add').value = address;
+        document.getElementById('d_pon').value = contact;
+        this.reset();
+        });
+document.getElementById('Delivery').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const d_name = document.getElementById('d_name').value;
+    const d_add = document.getElementById('d_add').value;
+    const d_pon = document.getElementById('d_pon').value;
+    const container = document.createElement('div');
+    container.innerHTML = `
+        <hr>
+        <strong>배송지 정보</strong><br>
+        배송지 이름: ${d_name} <br>
+        배송지 주소: ${d_add} <br>
+        배송지 연락처: ${d_pon}
+        `;
+        const deliveryResultDiv = document.getElementById('deliveryResult');
+        deliveryResultDiv.appendChild(container);
+        this.reset();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("load",function(){s
+            quiz1();
+        })
+
+
+
+        //1번
+        function quiz1(){
+            document.querySelector("#apply")
+            .addEventListener("click",function(){
+                let name = document.querySelector("#name")
+                console.log(name.value)
+
+                const list = document.querySelector("#quiz1 .list")
+                list.innerHTML = list.innerHTML + name.value + "<br>"             
+
+            })
+        }
+
+                
+    </script>
+</head>
+<body>
+    <h1>문제풀이</h1>
+    <div class="quiz" id="quiz1">
+        <h2>문제 1</h2>
+        <div>
+            <input type="text" id="name">
+            <input type="button" id="apply" value="신청">
+            <fieldset>
+                <legend>신청자목록</legend>
+                <div class="list"></div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="quiz" id="quiz2">
+    <h2>문제 1</h2>
+    <div>
+        <div>
+            <h3>주문자 정보</h3>
+            이름 : <input type="text" id="name1"><br>
+            연락처 : <input type="text" id="tel1"><br>
+            주소 : <input type="text" id="addr1"><br>
+        </div>
+        <div>
+            <h3>배송지 정보</h3>
+            <input type="checkbox">주문 정음와 같음 <br>
+            이름 : <input type="text" id="name1"><br>
+            연락처 : <input type="text" id="tel1"><br>
+            주소 : <input type="text" id="addr1"><br>
+        </div>
+    </div>
+    </div>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

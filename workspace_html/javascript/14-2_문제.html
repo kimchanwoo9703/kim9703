@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈</title>
+    <style>
+        #menu {
+            display: flex; 
+            list-style-type: none; 
+        }
+        .item {
+            padding: 12px 24px;
+            cursor: pointer;
+            color: gray;
+            transition: all 1s;
+        }
+        .item:hover {
+            background-color: white;
+            border-color: gray;
+        }
+        .item.active {
+            background-color:green;
+            color: white;
+            border-color: hotpink;
+        }
+    </style>
+</head>
+<body>
+    <ul id="menu">
+        <li class="item active">처음처럼</li>
+        <li class="item">린</li>
+        <li class="item">한라산</li>
+        <li class="item">참이슬</li>
+    </ul>
+    <script>
+        const items = document.querySelectorAll('.item');
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                items.forEach(innerItem => {
+                    innerItem.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

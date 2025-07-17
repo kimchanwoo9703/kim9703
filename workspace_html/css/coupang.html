@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>짱구 맥주 박제</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+        .Wkd {
+            display: flex;
+            padding: 10px;
+            background: white;
+        }
+        .aod a {
+            width: 100px;
+            height: 100px;
+            border: 2px solid white;
+            border-radius: 4px;
+            overflow: hidden;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .aod a:last-child {
+            margin-bottom: 0;
+        }
+        .aod img {
+            width: 100%;
+            height: 100%;
+        }
+        .viewer {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            background: white;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        .viewer img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        .viewer img:first-child {
+            opacity: 1;
+        }
+        .Wkd:has(.aod a:hover) .viewer img:first-child {
+            opacity: 0;
+        }
+        .aod:has(a:nth-child(1):hover) ~ .viewer img:nth-child(1),
+        .aod:has(a:nth-child(2):hover) ~ .viewer img:nth-child(2),
+        .aod:has(a:nth-child(3):hover) ~ .viewer img:nth-child(3),
+        .aod:has(a:nth-child(4):hover) ~ .viewer img:nth-child(4),
+        .aod:has(a:nth-child(5):hover) ~ .viewer img:nth-child(5) {
+            opacity: 1;
+        }
+        .aod a:hover {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="Wkd">
+        <div class="aod">
+            <a>
+                <img src="//thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/7/6b7801e4-d222-42db-8eef-2fc07db5876c.jpg" alt="썸네일 1">
+            </a>
+            <a>
+                <img src="//thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/2/8e07f068-4bfc-4013-b819-9600e63453e6.jpg" alt="썸네일 2">
+            </a>
+            <a>
+                <img src="//thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/3/768dce66-1d95-4e3b-ab93-304decdf3326.jpg" alt="썸네일 3">
+            </a>
+            <a>
+                <img src="//thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/3/27c38d24-99df-4181-8413-8748a2229321.jpg" alt="썸네일 4">
+            </a>
+            <a>
+                <img src="//thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/0/6b0a169e-e9b8-4ff4-bc94-b94915189b8b.jpg" alt="썸네일 5">
+            </a>
+        </div>
+        <div class="viewer">
+            <img src="//thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/7/6b7801e4-d222-42db-8eef-2fc07db5876c.jpg" alt="큰 이미지 1">
+            <img src="//thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/2/8e07f068-4bfc-4013-b819-9600e63453e6.jpg" alt="큰 이미지 2">
+            <img src="//thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/3/768dce66-1d95-4e3b-ab93-304decdf3326.jpg" alt="큰 이미지 3">
+            <img src="//thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/3/27c38d24-99df-4181-8413-8748a2229321.jpg" alt="큰 이미지 4">
+            <img src="//thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/0/6b0a169e-e9b8-4ff4-bc94-b94915189b8b.jpg" alt="큰 이미지 5">
+        </div>
+    </div>
+</body>
+</html>

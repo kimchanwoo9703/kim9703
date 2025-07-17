@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 페이지 로드 시 fn1() 호출
+        fn1();
+
+        // fn1 함수 정의
+        function fn1() {
+            console.log("fn1 실행"); // fn1 실행 로그 출력
+
+            fn2(); // fn2 호출
+            console.log("fn2 호출끝"); // fn2 호출 후 로그 출력
+        }
+
+        // fn2 함수 정의
+        function fn2() {
+            console.log("fn2 실행"); // fn2 실행 로그 출력
+
+            fn3(); // fn3 첫 번째 호출
+            fn3(); // fn3 두 번째 호출
+
+            console.log("중간에 낑긴거1"); // 중간 로그 출력
+
+            setTimeout(function () {
+                console.log("중간에 낑긴거2"); // 비동기 로그 출력 (0ms 후)
+            }, 0);
+
+            setTimeout(function () {
+                console.log("중간에 낑긴거3"); // 비동기 로그 출력 (0ms 후)
+            }, 0);
+
+            // fn3(); // 필요시 호출 (주석 처리됨)
+            fn3(); // fn3 세 번째 호출
+        }
+
+        // fn3 함수 정의
+        function fn3() {
+            console.log("fn3 실행"); // fn3 실행 로그 출력
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

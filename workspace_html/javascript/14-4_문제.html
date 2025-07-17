@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        select, input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .toppings {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+        }
+        #summary {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9f5ff;
+            border: 1px dashed #bde0fe;
+            border-radius: 8px;
+        }
+        #summary h3 {
+            margin-top: 0;
+            text-align: center;
+            color: #0056b3;
+        }
+        #summary p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        #total {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: right;
+            color: #d9534f;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>피자 주문</h1>
+
+        <div class="group">
+            <label for="size">사이즈 선택</label>
+            <select id="size" onchange="update()">
+                <option value="15000" data-name="M (미디엄)">M (미디엄) - 15,000원</option>
+                <option value="20000" data-name="L (라지)">L (라지) - 20,000원</option>
+            </select>
+        </div>
+
+        <div class="group">
+            <label>토핑 추가 (각 1,000원)</label>
+            <div class="toppings">
+                <div class="item">
+                    <input type="checkbox" id="cheese" value="1000" data-name="치즈" onchange="update()">
+                    <label for="cheese">치즈</label>
+                </div>
+                <div class="item">
+                    <input type="checkbox" id="pepperoni" value="1000" data-name="페퍼로니" onchange="update()">
+                    <label for="pepperoni">페퍼로니</label>
+                </div>
+                <div class="item">
+                    <input type="checkbox" id="bacon" value="1000" data-name="베이컨" onchange="update()">
+                    <label for="bacon">베이컨</label>
+                </div>
+                <div class="item">
+                    <input type="checkbox" id="shrimp" value="1000" data-name="새우" onchange="update()">
+                    <label for="shrimp">새우</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="group">
+            <label for="dough">도우 선택</label>
+            <select id="dough" onchange="update()">
+                <option value="0" data-name="오리지널">오리지널</option>
+                <option value="2000" data-name="씬">씬 (+2,000원)</option>
+                <option value="3000" data-name="치즈크러스트">치즈크러스트 (+3,000원)</option>
+            </select>
+        </div>
+
+        <div id="summary">
+            <h3>주문 내역</h3>
+            <p id="sum-size"><strong>사이즈:</strong> </p>
+            <p id="sum-dough"><strong>도우:</strong> </p>
+            <p id="sum-toppings"><strong>추가 토핑:</strong> </p>
+            <hr>
+            <p id="total">총 가격: 0원</p>
+        </div>
+    </div>
+
+    <script>
+        function update() {
+            let total = 0;
+
+            const sizeSelect = document.getElementById('size');
+            const sizePrice = parseInt(sizeSelect.value);
+            const sizeName = sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-name');
+            total += sizePrice;
+            document.getElementById('sum-size').innerHTML = `<strong>사이즈:</strong> ${sizeName}`;
+
+            const doughSelect = document.getElementById('dough');
+            const doughPrice = parseInt(doughSelect.value);
+            const doughName = doughSelect.options[doughSelect.selectedIndex].getAttribute('data-name');
+            total += doughPrice;
+            document.getElementById('sum-dough').innerHTML = `<strong>도우:</strong> ${doughName}`;
+
+            const toppings = document.querySelectorAll('.toppings input:checked');
+            let toppingsList = [];
+            toppings.forEach(topping => {
+                total += parseInt(topping.value);
+                toppingsList.push(topping.getAttribute('data-name'));
+            });
+            
+            const toppingsSummary = document.getElementById('sum-toppings');
+            if (toppingsList.length > 0) {
+                toppingsSummary.innerHTML = `<strong>추가 토핑:</strong> ${toppingsList.join(', ')}`;
+            } else {
+                toppingsSummary.innerHTML = '<strong>추가 토핑:</strong> 없음';
+            }
+
+            document.getElementById('total').innerText = `총 가격: ${total.toLocaleString()}원`;
+        }
+
+        window.onload = update;
+    </script>
+
+</body>
+</html>

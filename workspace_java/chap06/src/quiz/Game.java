@@ -11,8 +11,8 @@ public class Game {
     String job;
     int damage;
     int stat;
-    int fatigue;
-    String attribute;  
+    int f;
+    String at;  
     String weapon;    
 
     
@@ -21,13 +21,13 @@ public class Game {
         this.level = level;
         this.job = job;
         this.stat = stat;
-        this.fatigue = fatigue;
-        this.attribute = attribute;
+        this.f = fatigue;
+        this.at = attribute;
         this.weapon = weapon;
 
         
         Random rand = new Random();
-        this.damage = rand.nextInt(1000) + 1; // 1~1000 사이
+        this.damage = rand.nextInt(99999*999999) + 1; 
     }
 
     
@@ -38,11 +38,11 @@ public class Game {
         System.out.println("직업: " + job);
         System.out.println("스텟: " + stat);
         System.out.println("데미지: " + damage);
-        System.out.println("피로도: " + fatigue + " / 156");
-        System.out.println("속성: " + attribute);
+        System.out.println("피로도: " + f + " / 156");
+        System.out.println("속성: " + at);
         System.out.println("무기: " + weapon);
 
-        if (fatigue == 0) {
+        if (f == 0) {
             System.out.println(" 피로도가 0입니다.");
         }
         System.out.println("=======================");

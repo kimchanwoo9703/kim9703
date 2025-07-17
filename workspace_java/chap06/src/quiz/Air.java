@@ -10,7 +10,6 @@ public class Air {
     int bo; 
     boolean powerOn;
 
-    // 💡 메서드 (기능)
     void powerOn() {
         powerOn = true;
         System.out.println("에어컨이 켜졌습니다.");

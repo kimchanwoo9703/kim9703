@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>땡처리닷컴</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            font-size: 14px;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- 헤더 ----- */
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+        
+        .search-bar {
+            width: 400px;
+            border: 2px solid #ff4e00;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .search-bar input {
+            width: 100%;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: #ff4e00;
+            border: none;
+            color: white;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+        
+        .top-links a {
+            margin-left: 15px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        /* GNB (메인 네비게이션) */
+        .gnb {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .gnb > ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        .gnb > ul > li > a {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111;
+        }
+        .gnb > ul > li > a:hover {
+            color: #ff4e00;
+        }
+
+
+        /* ----- 메인 콘텐츠 ----- */
+        main {
+            padding: 30px 0;
+        }
+        
+        /* 메인 배너 및 검색창 */
+        .main-visual {
+            height: 480px;
+            background: url('https://img.ttang.com/da/main/2024/05/904a088e-6704-4b47-b353-066b0a708285.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .main-visual h2 {
+            font-size: 42px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* 상품 섹션 */
+        .products-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title a.more {
+             font-size: 14px;
+             font-weight: normal;
+             color: #777;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-info .location {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .product-info .title {
+            font-weight: bold;
+            height: 40px; /* 2줄 고정 */
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .product-info .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff4e00;
+            text-align: right;
+        }
+        
+        .price span {
+            font-size: 14px;
+            font-weight: normal;
+            color: #333;
+        }
+
+
+        /* ----- 푸터 ----- */
+        footer {
+            margin-top: 50px;
+            background-color: #333;
+            color: #aaa;
+            padding: 40px 0;
+            font-size: 13px;
+        }
+        
+        .footer-top {
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .footer-top a {
+            margin-right: 20px;
+        }
+        
+        .footer-top a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-info p {
+            margin-bottom: 5px;
+        }
+        
+        .footer-info .corp {
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .customer-center {
+            text-align: right;
+        }
+        
+        .customer-center .tel {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="#"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQmhWUUKjjjj_QL8elrOEBHXQyCql_e9CWPk9I2kS-VhHnRr9fg" alt="땡처리닷컴 로고"></a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="어디로 떠나세요?">
+                    <button type="button">🔍</button>
+                </div>
+                <div class="top-links">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">마이페이지</a>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="#">땡처리항공</a></li>
+                    <li><a href="#">호텔</a></li>
+                    <li><a href="#">투어&티켓</a></li>
+                    <li><a href="#">해외패키지</a></li>
+                    <li><a href="#">제주/국내</a></li>
+                    <li><a href="#">허니문</a></li>
+                    <li><a href="#">골프</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-visual">
+            <div class="main-text">
+                <h2>매일매일 최저가 득템찬스!</h2>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="section-title">
+                <h2>오늘의 땡처리!</h2>
+                <a href="#" class="more">더보기 &gt;</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="#">
+                        <img src="https://img.ttang.com/goods/55/24/31/552431_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[다낭]</p>
+                            <p class="title">초특급 빈펄 리조트 3박5일 #풀빌라 #휴양</p>
+                            <p class="price">499,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                     <a href="#">
+                        <img src="https://img.ttang.com/goods/52/62/17/526217_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[방콕/파타야]</p>
+                            <p class="title">특급호텔+해양스포츠+야시장투어 3박5일</p>
+                            <p class="price">399,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                     <a href="#">
+                        <img src="https://img.ttang.com/goods/55/65/04/556504_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[오사카]</p>
+                            <p class="title">[여름휴가] 오사카/교토/고베 핵심관광 2박3일</p>
+                            <p class="price">549,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                     <a href="#">
+                        <img src="https://img.ttang.com/goods/55/26/51/552651_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[괌]</p>
+                            <p class="title">PIC 리조트 자유여행 3박4일 #골드카드</p>
+                            <p class="price">699,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+         <section class="products-section">
+            <div class="section-title">
+                <h2>마감임박 땡처리!</h2>
+                 <a href="#" class="more">더보기 &gt;</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="#">
+                        <img src="https://img.ttang.com/goods/55/28/62/552862_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[북해도]</p>
+                            <p class="title">여름의 북해도! 라벤더+온천 3박4일</p>
+                            <p class="price">799,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                     <a href="#">
+                        <img src="https://img.ttang.com/goods/55/44/22/554422_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[코타키나발루]</p>
+                            <p class="title">5성급 리조트 + 반딧불투어 3박5일</p>
+                            <p class="price">599,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                     <a href="#">
+                        <img src="https://img.ttang.com/goods/55/46/78/554678_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[세부]</p>
+                            <p class="title">호캉스 특집! 제이파크 리조트 3박4일</p>
+                            <p class="price">659,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                     <a href="#">
+                        <img src="https://img.ttang.com/goods/55/38/92/553892_g.jpg" alt="상품 이미지">
+                        <div class="product-info">
+                            <p class="location">[장가계]</p>
+                            <p class="title">효도여행 추천! 장가계 원가계 5일</p>
+                            <p class="price">499,000<span>원~</span></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                 <a href="#">회사소개</a>
+                 <a href="#">이용약관</a>
+                 <a href="#">개인정보처리방침</a>
+                 <a href="#">여행약관</a>
+                 <a href="#">해외여행자보험</a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <p class="corp">(주)땡처리닷컴</p>
+                    <p>대표이사 : 서장원 | 주소 : 서울특별시 중구 서소문로 89-31</p>
+                    <p>사업자등록번호 : 104-81-83162 | 통신판매업신고 : 제2021-서울중구-0269호</p>
+                    <p>Copyright &copy; Ttang.com All Rights Reserved.</p>
+                </div>
+                <div class="customer-center">
+                    <p>고객센터</p>
+                    <p class="tel">02-3705-8833</p>
+                    <p>평일 09:00 ~ 18:00 (주말/공휴일 휴무)</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

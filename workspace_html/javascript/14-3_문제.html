@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈3번</title>
+<style>
+    #wrap {
+        position: relative;
+        width: 500px;
+        margin: 50px auto;
+        border: 1px solid #ccc;
+    }
+    #pic {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    #lens {
+        position: absolute;
+        border: 2px solid #000;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        background-repeat: no-repeat;
+        visibility: hidden;
+        cursor: none;
+    }
+</style>
+</head>
+<body>
+
+<div id="wrap">
+    <img id="pic" src="https://cdn.autobuff.co.kr/news/photo/202406/52801_14513_5621.jpg">
+    <div id="lens"></div>
+</div>
+
+<script>
+    const wrap = document.getElementById('wrap');
+    const pic = document.getElementById('pic');
+    const lens = document.getElementById('lens');
+    const zoom = 2;
+
+    pic.onload = function() {
+        lens.style.backgroundImage = `url(${pic.src})`;
+        lens.style.backgroundSize = `${pic.width * zoom}px ${pic.height * zoom}px`;
+        wrap.addEventListener('mousemove', moveLens);
+        wrap.addEventListener('mouseout', () => {
+            lens.style.visibility = 'hidden';
+        });
+    }
+
+    function moveLens(e) {
+        const rect = wrap.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        
+        let lensX = x - lens.offsetWidth / 2;
+        let lensY = y - lens.offsetHeight / 2;
+
+        if (lensX < 0) lensX = 0;
+        if (lensY < 0) lensY = 0;
+        if (lensX > pic.width - lens.offsetWidth) lensX = pic.width - lens.offsetWidth;
+        if (lensY > pic.height - lens.offsetHeight) lensY = pic.height - lens.offsetHeight;
+
+        lens.style.left = `${lensX}px`;
+        lens.style.top = `${lensY}px`;
+        lens.style.backgroundPosition = `-${x * zoom - lens.offsetWidth / 2}px -${y * zoom - lens.offsetHeight / 2}px`;
+        lens.style.visibility = 'visible';
+    }
+</script>
+
+</body>
+</html>

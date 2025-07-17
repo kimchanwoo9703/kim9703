@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let str = " 줫나게 공부 개 줫나게 잘하는 현 민";
+
+        console.log("str.length : ", str.length)
+
+        //indexOf
+        //전달 인자와 동일한 글씨가 있는 경우
+        //첫번째 만나는 요소의 첫 index를 돌려준다
+        //동일한 글씨가 없을경우 -1을 돌려줌
+        console.log(str.indexOf(" 줫나게"))
+        console.log(str.indexOf(" 존잘"))
+
+        //replace
+        //첫번째 전달인자를 두번째 전달자로 바꿔줌
+        //기본적으로 처음 만나는 것만 한번 바꿔줌
+        let str2 = str.replace("줫나게", "줜나게")
+        console.log(str)
+        console.log(str2)
+
+        let str3 = str.replace(/줫나게/g, "줜나게")
+        console.log(str)
+        console.log(str3)
+
+        //시작, 끝 바로앞
+        let str4 = str.substring(1, 4);
+        console.log(str)
+        console.log(str4)
+
+        // 시작, 몇 개
+        let str5 = str.substr(3, 4);
+        console.log(str)
+        console.log(str5)
+
+        
+        console.log("---------------@앞에 아이디 표시----------------")
+        let mail = "zbxmal12@gmail.com";
+
+        let idx = mail.indexOf("@");
+        let id = mail.substring(0, idx)
+        console.log(id)
+
+        const name = mail.split("@")[0];
+        console.log(name)
+
+        console.log("---------------맨앞 2글자 *표시----------------")
+        function maskEmail(email) {
+            const [id, domain] = email.split("@");
+            if (id.length <= 2) {
+                return email;
+            }
+
+            const visible = id.slice(0, 2);
+            const masked = "*".repeat(id.length - 2); 
+            return `${visible}${masked}@${domain}`;
+        }
+
+        const email = "zbxmal12@gmail.com";
+        const maskedEmail = maskEmail(email);
+        console.log(maskedEmail); 
+
+        
+        console.log("---------comic.naver.com 예를들어 이 사이트에 2번째 naver출력-----------")
+        const gettwo = u => u.split(".").slice(-2, -1)[0];
+        console.log(gettwo("comic.naver.com")); 
+        console.log(gettwo("human.or.kr"));    
+
+        
+        console.log("---------comic.naver.com 예를들어 이 사이트에 2번째 naver출력-----------")
+        function web(url) {
+        const dnpq = url.split(".");
+        return dnpq.length >= 2 ? dnpq[dnpq.length - 2] : url;
+        }
+
+        console.log(web("comic.naver.com")); 
+        console.log(web("human.or.kr"));  
+
+        console.log("---------comic.naver.com 예를들어 이 사이트에 2번째 naver출력-----------")
+        let domain = 'comic.naver.com'
+        let dot1 = domain.indexOf("_");
+        domain = domain.substring(dot1 +1 )
+        let dot2 = domain.indexOf(".")
+        domain = domain.substring( 0, dot2 )
+        console.log( domain)
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

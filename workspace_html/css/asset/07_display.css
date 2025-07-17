@@ -1,0 +1,62 @@
+#div {
+    border: 1px solid red;
+    text-align: center;
+}
+
+/* 블록 요소 스타일 */
+.block {
+    border: 1px solid red;
+    width: 100px;
+    height: 50px;
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+/* 인라인 요소 스타일 (width, height 적용 안됨) */
+.inline {
+    border: 1px solid red;
+    width: 200px;     /* 인라인 요소에는 width, height 적용 안됨 */
+    height: 50px;
+    margin: 30px 50px; /* 좌우 마진만 적용, 위아래는 적용 안됨 (border는 밀어짐) */
+    padding: 20px;
+}
+
+.bg_blue {
+    background-color: blue;
+    color: #ffffff;
+}
+
+/* 부모 컨테이너 */
+.parent {
+    border: 1px dotted hotpink;
+    /* width: 400px; */
+    /* width: 200px; */
+    width: 100%;
+}
+
+/* 부모의 자식 div에 적용 */
+.parent > div {
+    border: dashed brown;
+    width: 40%;
+    height: 50px;
+    display: inline-block; /* 인라인 블록으로 배치 */
+    /* inline,inline-block 에만 적용됨 */
+    /* vertical-align: top; */
+}
+
+.hide{
+    display: none;
+}
+
+.table {
+    display: table
+}
+.table .td {
+    display: table-cell;
+
+    border: 1px solid red;
+    height: 100px;
+    width: 200px;
+    
+    /* td일때는 사용가능 */
+    vertical-align: middle;
+}

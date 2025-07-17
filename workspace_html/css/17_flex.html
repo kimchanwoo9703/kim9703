@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex-container {
+            border: 1px solid green;
+            height: 300px;
+            display: flex;
+            /* display: inline-flex; */
+            /* main축 기본값: 왼쪽에서 오른쪽으로 */
+            /* flex-direction: row; */
+            /* 오른쪽에서 왼쪽으로 */
+            /* flex-direction: row-reverse; */
+            /* main축과 cross축을 바꿔서 위에서 아래로 */
+            /* flex-direction: column; */
+            /* main축과 cross축을 바꿔서 아래에서 위로 */
+            /* flex-direction:column-reverse; */
+            /* 기본값, 한줄에 모든 item을 표시하려고 노력 */
+            /* flex-wrap: nowrap; */
+            /* inset-block처럼 넘치는 경우 다음줄로 */
+            /* flex-wrap: wrap; */
+            /* 아래에서 위로 */
+            /* flex-wrap: wrap-reverse; */
+
+            /* 기본값, main축의 start 방향으로 정렬 */
+            /* justify-content: flex-start; */
+
+            /* main 축의 end 방향으로 정렬 */
+            /* justify-content: flex-end; */
+
+            /* 가운데정렬 */
+            /* justify-content: center; */
+
+            /* 남은 공간을 사이사이에 균등하게 배분 처음과 끝은 사이드에 붙음*/
+            /* justify-content: space-between; */
+
+            /* item의 양쪽에 동일한 공간을 배분한다 */
+            /* justify-content: space-around; */
+
+            /* iteml은 모든 공간이 균등하게 배분한다 */
+            /* justify-content: space-evenly */
+
+            /* 기본값, 부모크기만큼 cross축 방향으로 쭉 늘리기 */
+            /* align-items: stretch; */
+
+            /* cross축의 start 방향 */
+            /* align-items: flex-start; */
+            
+            /* cross축의 end 방향 */
+            /* align-items: flex-end; */
+            
+            /* 가운데 정렬 */
+            /* align-items: center; */
+
+            /* flex-wrap: wrap; */
+
+            /* 여러줄에 대해 cross축의 이야기 */
+            /* 기본값, 각 줄의 높이를 꽉 채운상태 */
+            /* align-content:stretch; */
+
+            /* cross축의 start 방향 */
+            /* align-content: flex-start; */
+
+            /* cross축의 end 방향 */
+            /* align-content: flex-end; */
+
+            /* cross축의 가운데 방향 */
+            /* align-content: center; */
+
+            /* align-content: space-between; */
+            /* align-content: space-around; */
+            /* align-content: space-evenly; */
+            
+            /* flex-wrap: nowrap; */
+            
+            
+
+            
+
+
+
+        }
+
+        .flex-container .flex-item {
+            border: 1px solid red;
+            background-color: hotpink;
+            color: white;
+
+            /* width: 50px; */
+            width: 200px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="flex-item" style="flex-shrink: 0; align-self: start;">1</div>
+        <div class="flex-item" style="order: 2;">2</div>
+        <div class="flex-item" style="flex-shrink: 1;">3</div>
+        <div class="flex-item" style="flex-shrink: 2;">4</div>
+        <div class="flex-item" style="order: -1;">5</div>
+        <!-- <div class="flex-item" style="flex-grow: 1;">4</div> -->
+        <!-- <div class="flex-item" style="flex-grow: 3;">5</div> -->
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+    <script>
+        $(()=>{
+            init()
+        })
+        function init(){
+            const list_h1 = $('h1')
+            console.log( list_h1 )
+            console.log( list_h1[0] )
+            
+            console.log( $('#human')) // 없으면 빈 배열
+            
+            // queryselectorAll에 해당
+            $('h1').text('싸아아아악다 변경')
+            
+            // innerHTML에 해당
+            // $('h1').html('<a href="#"> a tag </a>')
+            $('h1').html('<a href="javascript:void(0)"> a tag </a>')
+            
+            console.log($('#parent'))
+            //클래스 추가
+            $('#parent').addClass('c1')
+            $('#parent').addClass('c2 c3 ')
+            
+            //클래스 삭제
+            $('#parent').removeClass('c1 c2 ')
+            
+            // 클래스 있으면 제거 없으면 추가
+            $('#parent').toggleClass('c2')
+            
+            
+            console.log($('#parent').hasClass('c2'))
+
+            // 전달인자가 한개면 getAttribute 속성의 값 가져오기
+            let human = $('#chk').attr('data-human')
+            console.log( human )
+            // 전달인자가 두개면 setAttribute  
+             $('#chk').attr('data-human','123')
+             $('#chk').attr('data-game','윷놀이')
+
+             // data( ): data-속성명에서 속성명만 사용할수있다
+            console.log( $('#chk').data('game') )
+
+            // 개발자도구에서 안보이는 속성 추가
+            $('#chk').data('dinner','찌개')
+            console.log( $('#chk').data('dinner') )
+
+            //속성 제거
+            $('#chk').removeAttr('data-game')
+
+            // createElement 해줌
+            let child2 =  $('<div class="childe2">자식2</div>')
+            console.log(child2[0] )
+
+            //자식의 마지막에 요소 추가
+             $('$parent').append(child2)
+             $('$parent').prepend('<div class="child3">자식3</div>')
+             
+            //  $('$parent')[0].innerHTML = ""
+            //  $('$parent').html('')
+             $('$parent').empty()
+             
+             $('$parent').remove()
+
+        }
+        
+    </script>
+
+</head>
+<body>
+    <h1>1번째</h1>
+    <h1>2번째</h1>
+    <h1>3번째</h1>
+
+    <div id="parent">
+        부모
+        <div class="child">자식</div>
+    </div>
+
+    <input type="checkbox" id="chk" class="cb1" value="1"
+            data-human="값" checked="checked"> <br>
+</body>
+</html>

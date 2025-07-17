@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .todo{
+            display: flex;
+            justify-content: space-between;
+        }
+        .todo-wrap .todo [type=checkbox]:checked + span {
+            text-decoration: line-through;
+        }
+        [type=checkbox]:not(#all){
+            transform: scale(1.5);
+        }
+    </style>
+    
+    <script>
+        window.addEventListener("load", function(){
+            init()
+            bind()
+        })
+        function init(){}
+
+        function bind(){
+            document.querySelector("#add")
+                .addEventListener("click", function(){
+                    const todo = document.querySelector("#todo").value
+                    if (todo.trim() === "") return; // 빈 값 추가 방지
+                    const wrap = document.querySelector(".todo-wrap")
+
+
+                    const div = document.createElement("div")
+                    div.classList.add("todo")
+                    div.innerHTML= `
+                    <input type="checkbox" class="chk">
+                    <span>${todo}</span>
+                    <input type="button" class="del" value="삭제">
+                    `
+                    div.querySelector(".del")
+                    .addEventListener("click", function(event){
+                        const isDel = confirm("삭제할거에요?")
+                        if(isDel){
+                            event.target.parentNode.remove()
+                        }
+
+                    })
+                    wrap.append(div)
+                    document.querySelector("#todo").value = ""
+                })
+
+                document.querySelector("#del_chk")
+                .addEventListener("click",function(){
+                    // 1. 체크 되어있는 모든 checkbox 가져오기
+                    const chks = document.querySelectorAll("[type=checkbox]:not(#all:checked")
+                    // 2. 부모 지우기
+                    // 3. 같은 부모의 del 버튼 클릭
+                })
+            }
+            </script>
+</head>
+<body>
+    <div>
+        <h1>할일 TODO</h1>
+    <div>
+        <input type="text" id="todo">
+        <input type="button" id="add" value="추가">
+    </div> 	
+    <div>
+        <input type="checkbox" id="all">전체 선택
+        <input type="button" id="del_chk" value="선택삭제">
+    </div>
+    <div class="todo-wrap">
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO 리스트</title>
+    <style>
+        /* CSS */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .wrap { 
+            width: 350px; 
+            margin: 20px auto; 
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            gap: 5px;
+        }
+        #input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #addBtn {
+            padding: 8px 12px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btns {
+            margin: 10px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+        .btns button {
+            padding: 5px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #delSelectedBtn {
+            grid-column: 1 / -1;  
+            background-color: #ffc107;
+        }
+        #list { 
+            list-style: none; 
+            padding: 0; 
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .item { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 8px; 
+            padding: 8px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .item.done span { 
+            text-decoration: line-through; 
+            color: #aaa; 
+        }
+        .item span { 
+            flex-grow: 1; 
+            margin: 0 10px;
+        }
+        .del {
+            background: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <h2> TODO 리스트</h2>
+        <div class="header">
+            <input type="text" id="input" placeholder="할 일을 입력하세요">
+            <button id="addBtn">추가</button>
+        </div>
+        <div class="btns">
+            <button id="all">전체선택</button>
+            <button id="clear">선택취소</button>
+            <button id="delSelectedBtn">선택삭제</button> 
+        </div>
+        <ul id="list"></ul>
+    </div>
+
+    <script>
+        // JavaScript
+        const input = document.getElementById('input');
+        const list = document.getElementById('list');
+
+        const addTodo = () => {
+            if (input.value.trim() === '') return;
+
+            const newItem = document.createElement('li');
+            newItem.className = 'item';
+            newItem.innerHTML = `
+                <input type="checkbox">
+                <span>${input.value}</span>
+                <button class="del">삭제</button>
+            `;
+            list.appendChild(newItem);
+            input.value = '';
+            input.focus();
+        };
+
+        document.getElementById('addBtn').addEventListener('click', addTodo);
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                addTodo();
+            }
+        });
+
+        list.addEventListener('click', (e) => {
+            if (e.target.type === 'checkbox') {
+                e.target.parentElement.classList.toggle('done');
+            }
+            if (e.target.classList.contains('del')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        document.getElementById('all').addEventListener('click', () => {
+            document.querySelectorAll('.item input[type="checkbox"]').forEach(cb => {
+                cb.checked = true;
+                cb.parentElement.classList.add('done');
+            });
+        });
+
+        document.getElementById('clear').addEventListener('click', () => {
+            document.querySelectorAll('.item input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+                cb.parentElement.classList.remove('done');
+            });
+        });
+
+        document.getElementById('delSelectedBtn').addEventListener('click', () => {
+            document.querySelectorAll('.item.done').forEach(item => {
+                item.remove();
+            });
+        });
+    </script>
+
+</body>
+</html> -->
